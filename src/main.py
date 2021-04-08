@@ -6,6 +6,7 @@ from threading import Thread
 from time import sleep
 
 # Implement a thread safe queue so that I can queue images and they can later be drawn from the main thread.
+# or maybe it´s better to just check how much time has passed and see what I should draw from one thread
 
 
 def timer(display):
