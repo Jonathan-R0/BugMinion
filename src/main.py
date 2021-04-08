@@ -2,10 +2,22 @@ import sys
 import pygame
 from window import Window
 from table import Table
+from threading import Thread
+from time import sleep
 
-if len(sys.argv) != 3:
-    raise IOError("Must include window size.")
-    # Read from config file.
+# Implement a thread safe queue so that I can queue images and they can later be drawn from the main thread.
+
+
+def timer(display):
+    for i in range(5, -1, -1):
+        sleep(1)
+        display.blit(pygame.image.load(
+            "./../assets/" + str(i) + ".png"), (555, 500 - (((5 - i) * 500) / 6)))
+
+
+def starting_screen(display):
+    display.blit(pygame.image.load(
+        "./../assets/startingscreen.png"), (0, 0))
 
 
 def detect_event(cursor, event, table):
@@ -26,24 +38,30 @@ def detect_event(cursor, event, table):
 
 
 def run():
-    window = Window(sys.argv[1], sys.argv[2])
+    window = Window(833, 500)
     cursor = window.create_cursor()
     table = Table()
     running = True
+    starting_screen(cursor.display)
 
+    thread = Thread(target=timer, args=(cursor.display,))
+
+    thread.start()
     while running:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN:
-                window.black_screen()
+                window.draw_background()
                 detect_event(cursor, event, table)
                 table.draw(window.display, cursor.width, cursor.height)
 
             pygame.display.update()
         window.clock.tick(60)
         window.update()
+
+    thread.join()
 
 
 if __name__ == "__main__":
