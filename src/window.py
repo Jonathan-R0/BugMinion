@@ -7,7 +7,6 @@ TITLE = "BugMinion"
 
 class Window:
     def __init__(self, width, height):
-        self.boxes = []
         try:
             self.width = int(width)
             self.height = int(height)

@@ -40,7 +40,8 @@ class Cursor:
         self.move_pos((1, 0))
         self.draw()
 
-    def hit(self):
-        self.display.blit(
-            pygame.image.load("./assets/circle.png"),
-            (self.pos[0] * self.width, self.pos[1] * self.height))
+    def hit(self, table):
+        table.new_drawing(self.pos)
+
+    def unhit(self, table):
+        table.stop_drawing(self.pos)
