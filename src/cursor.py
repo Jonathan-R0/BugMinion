@@ -1,10 +1,9 @@
 import pygame
-from drawable import Drawable
 
 BLUE = (0, 0, 255)
 
 
-class Cursor(Drawable):
+class Cursor:
     def __init__(self, display, screen_width, screen_height):
         self.display = display
         self.width = screen_width / 3
