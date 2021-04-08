@@ -11,7 +11,6 @@ class Window:
             self.width = int(width)
             self.height = int(height)
         except TypeError as error:
-            # Log errors.
             print(type(error))
             print(error.args)
             print(error)

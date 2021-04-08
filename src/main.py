@@ -47,4 +47,10 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    try:
+        run()
+    except Exception as error:
+        # Log errors.
+        print(type(error))
+        print(error.args)
+        print(error)
