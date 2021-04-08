@@ -1,4 +1,6 @@
 import sys
+import logging
+import traceback
 import pygame
 from timer import Timer
 from window import Window
@@ -35,9 +37,11 @@ def detect_event(cursor, event, table):
         cursor.go_right()
     elif event.key == pygame.K_RETURN:
         cursor.hit(table)
+        return True
     elif event.key == pygame.K_BACKSPACE:
         cursor.unhit(table)
     cursor.draw()
+    return False
 
 
 def run():
@@ -45,6 +49,7 @@ def run():
     cursor = window.create_cursor()
     table = Table()
     running = True
+    game_ended = False
     starting_screen(cursor.display, window)
     timer = Timer(cursor.display, (700, 350))
 
@@ -58,9 +63,13 @@ def run():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            elif event.type == pygame.KEYDOWN:
-                detect_event(cursor, event, table)
+            elif event.type == pygame.KEYDOWN and not game_ended:
+                if detect_event(cursor, event, table):
+                    table.enemy_pick()
             pygame.display.update()
+
+        if table.player_won():
+            print("You win!")
 
         window.clock.tick(FPS)
         window.update()
@@ -70,7 +79,4 @@ if __name__ == "__main__":
     try:
         run()
     except Exception as error:
-        # Log errors.
-        print(type(error))
-        print(error.args)
-        print(error)
+        logging.error(traceback.format_exc())

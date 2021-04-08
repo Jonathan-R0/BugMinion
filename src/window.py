@@ -1,6 +1,8 @@
 import pygame
 from cursor import Cursor
 
+BLUE = (0, 0, 255)
+RED = (255, 0, 0)
 BLACK = (0, 0, 0)
 TITLE = "BugMinion"
 
@@ -29,8 +31,8 @@ class Window:
         pygame.display.flip()
 
     def draw_background(self):
-        self.display.blit(pygame.image.load(
-            "./../assets/background.png"), (0, 0))
+        self.display.blit(pygame.image.load("./../assets/background.png"),
+                          (0, 0))
 
     def create_cursor(self):
-        return Cursor(self.display, self.width, self.height)
+        return Cursor(self.display, self.width, self.height, BLUE)

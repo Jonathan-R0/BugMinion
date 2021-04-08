@@ -1,11 +1,16 @@
 import pygame
 
-BLUE = (0, 0, 255)
-
 
 class Cursor:
-    def __init__(self, display, screen_width, screen_height):
+    def __init__(self,
+                 display,
+                 screen_width,
+                 screen_height,
+                 color,
+                 block_width=5):
+        self.color = color
         self.display = display
+        self.block_width = block_width
         self.width = screen_width / 3
         self.height = screen_height / 3
         self.pos = (1, 1)
@@ -16,8 +21,9 @@ class Cursor:
         x_coord = coords[0]
         y_coord = coords[1]
         self.surface = pygame.draw.rect(
-            self.display, BLUE,
-            pygame.Rect(x_coord, y_coord, self.width, self.height), 5)
+            self.display, self.color,
+            pygame.Rect(x_coord, y_coord, self.width, self.height),
+            self.block_width)
 
     def move_pos(self, vector):
         new_pos = (self.pos[0] + vector[0], self.pos[1] + vector[1])

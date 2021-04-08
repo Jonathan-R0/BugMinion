@@ -1,3 +1,4 @@
+import sys
 import time
 from math import floor
 import pygame
@@ -22,8 +23,9 @@ class Timer:
 
     def _get_time(self):
         delta_time = floor(time.time() - self.starting_time)
+        #if delta_time > TOTAL_SECONDS:
+        #sys.exit()
         if 0 <= delta_time <= TOTAL_SECONDS:
-            print(delta_time)
             return delta_time
         return TOTAL_SECONDS
 
