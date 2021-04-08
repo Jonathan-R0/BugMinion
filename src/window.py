@@ -17,6 +17,8 @@ class Window:
 
         pygame.init()
         self.display = pygame.display.set_mode((screen_width, screen_height))
+        self.logo_img = pygame.image.load("./../assets/logo.png")
+        pygame.display.set_icon(self.logo_img)
         pygame.display.set_caption(TITLE)
         self.clock = pygame.time.Clock()
 

@@ -6,6 +6,7 @@ from table import Table
 
 SCREEN_WIDTH = 833
 SCREEN_HEIGHT = 500
+FPS = 30
 
 
 def starting_screen(display, window):
@@ -61,7 +62,7 @@ def run():
                 detect_event(cursor, event, table)
             pygame.display.update()
 
-        window.clock.tick(60)
+        window.clock.tick(FPS)
         window.update()
 
 
