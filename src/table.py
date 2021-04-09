@@ -90,7 +90,7 @@ class Table:
     def i_lose(self):
         return self.player_won(PLAYER_CHARACTER)
 
-    def enemy_pick(self):
+    def enemy_pick(self, enemy):
         choices = set()
         for row in self.blocks:
             for block in row:
@@ -99,6 +99,7 @@ class Table:
 
         if len(choices) != 0:
             choice = random.choice(tuple(choices))
+            enemy.pos = choice.pos
             choice.drawing = True
             choice.enemy = True
             choice.image_src = "./../assets/ant.png"

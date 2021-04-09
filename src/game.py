@@ -20,6 +20,7 @@ class Game:
         self.running = True
         self.game_ended = False
         self._starting_screen()
+        self.enemy = self.window.create_enemy()
         self.timer = Timer(self.cursor.display, (700, 350),
                            self.window.mixer.Sound("./../assets/pop.wav"))
 
@@ -55,6 +56,7 @@ class Game:
         self.timer.draw()
         self.table.draw(self.window.display, self.cursor.width,
                         self.cursor.height)
+        self.enemy.draw()
         self.cursor.draw()
 
     def play_ending_sound(self, song):
@@ -74,7 +76,7 @@ class Game:
                     self.running = False
                 elif event.type == pygame.KEYDOWN and not self.game_ended:
                     if self.detect_event(event) and not self.table.i_win():
-                        self.table.enemy_pick()
+                        self.table.enemy_pick(self.enemy)
                 pygame.display.update()
 
             if self.table.i_win():

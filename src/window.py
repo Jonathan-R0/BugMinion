@@ -33,3 +33,6 @@ class Window:
 
     def create_cursor(self):
         return Cursor(self.display, self.width, self.height, BLUE)
+
+    def create_enemy(self):
+        return Cursor(self.display, self.width, self.height, RED)
