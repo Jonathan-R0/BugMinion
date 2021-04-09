@@ -15,6 +15,6 @@ pip3 install numpy
 pip3 install pygame
 ```
 
-<br><p align="center"><img src="./screenshots/startingscreen.jpg"/>Starting Screen</p>
-<br><p align="center"><img src="./screenshots/game.jpg"/>Play Quick!</p>
+<br><p align="center"><img src="./screenshots/startingscreen.png"/>Starting Screen</p>
+<br><p align="center"><img src="./screenshots/game.png"/>Play Quick!</p>
 <br><p align="center"><img src="./screenshots/platforms.png"/></p>
