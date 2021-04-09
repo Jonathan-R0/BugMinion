@@ -9,14 +9,8 @@ TITLE = "BugMinion"
 
 class Window:
     def __init__(self, screen_width, screen_height):
-        try:
-            self.width = 500
-            self.height = 500
-        except TypeError as error:
-            print(type(error))
-            print(error.args)
-            print(error)
-
+        self.width = 500
+        self.height = 500
         pygame.init()
         self.mixer = pygame.mixer
         self.mixer.init()
