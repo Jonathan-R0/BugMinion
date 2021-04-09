@@ -15,6 +15,8 @@ pip3 install numpy
 pip3 install pygame
 ```
 
+Thanks to Franimpe@outlook.es for the sprites.
+
 <br><p align="center"><img src="./screenshots/startingscreen.png"/>Starting Screen</p>
-<br><p align="center"><img src="./screenshots/game.png"/>Play Quick!</p>
+<br><p align="center"><img src="./screenshots/game.png"/>Graphics by <a href="mailto:Franimpe@outlook.es">Francisco Imperioso</a></p>
 <br><p align="center"><img src="./screenshots/platforms.png"/></p>
