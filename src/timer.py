@@ -23,8 +23,8 @@ class Timer:
 
     def _get_time(self):
         delta_time = floor(time.time() - self.starting_time)
-        #if delta_time > TOTAL_SECONDS:
-        #sys.exit()
+        if delta_time > TOTAL_SECONDS:
+            sys.exit()
         if 0 <= delta_time <= TOTAL_SECONDS:
             return delta_time
         return TOTAL_SECONDS

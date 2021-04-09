@@ -8,6 +8,8 @@ from table import Table
 
 SCREEN_WIDTH = 833
 SCREEN_HEIGHT = 500
+TADA = "./../assets/tada.wav"
+FART = "./../assets/fart.wav"
 FPS = 30
 
 
@@ -26,7 +28,6 @@ def starting_screen(display, window):
 
 
 def detect_event(cursor, event, table):
-    print(cursor.pos)
     if event.key == pygame.K_DOWN or event.key == ord('s'):
         cursor.go_down()
     elif event.key == pygame.K_LEFT or event.key == ord('a'):
@@ -44,6 +45,23 @@ def detect_event(cursor, event, table):
     return False
 
 
+def draw(timer, window, table, cursor):
+    timer.update()
+    window.draw_background()
+    timer.draw()
+    table.draw(window.display, cursor.width, cursor.height)
+    cursor.draw()
+
+
+def play_ending_sound(timer, window, table, cursor, song):
+    sound = window.mixer.Sound(song)
+    draw(timer, window, table, cursor)
+    window.update()
+    channel = sound.play()
+    while channel.get_busy():
+        pygame.time.wait(100)
+
+
 def run():
     window = Window(SCREEN_WIDTH, SCREEN_HEIGHT)
     cursor = window.create_cursor()
@@ -55,21 +73,21 @@ def run():
 
     while running:
 
-        timer.update()
-        window.draw_background()
-        timer.draw()
-        table.draw(window.display, cursor.width, cursor.height)
-        cursor.draw()
+        draw(timer, window, table, cursor)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN and not game_ended:
-                if detect_event(cursor, event, table):
+                if detect_event(cursor, event, table) and not table.i_win():
                     table.enemy_pick()
             pygame.display.update()
 
-        if table.player_won():
-            print("You win!")
+        if table.i_win():
+            running = False
+            play_ending_sound(timer, window, table, cursor, TADA)
+        if table.i_lose():
+            running = False
+            play_ending_sound(timer, window, table, cursor, FART)
 
         window.clock.tick(FPS)
         window.update()

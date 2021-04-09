@@ -18,6 +18,8 @@ class Window:
             print(error)
 
         pygame.init()
+        self.mixer = pygame.mixer
+        self.mixer.init()
         self.display = pygame.display.set_mode((screen_width, screen_height))
         self.logo_img = pygame.image.load("./../assets/logo.png")
         pygame.display.set_icon(self.logo_img)
@@ -25,6 +27,7 @@ class Window:
         self.clock = pygame.time.Clock()
 
     def __del__(self):
+        pygame.mixer.init()
         pygame.quit()
 
     def update(self):
