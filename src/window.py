@@ -21,7 +21,7 @@ class Window:
         self.clock = pygame.time.Clock()
 
     def __del__(self):
-        pygame.mixer.init()
+        pygame.mixer.quit()
         pygame.quit()
 
     def update(self):
