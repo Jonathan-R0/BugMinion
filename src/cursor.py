@@ -47,7 +47,7 @@ class Cursor:
         self.draw()
 
     def hit(self, table):
-        table.new_drawing(self.pos)
+        return table.new_drawing(self.pos)
 
     def unhit(self, table):
         table.stop_drawing(self.pos)

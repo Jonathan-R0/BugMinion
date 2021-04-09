@@ -41,10 +41,15 @@ class Table:
 
     def __str__(self):
         ans = self._make_game_matrix()
-        return '[' + str(ans[0]) + '\n ' + str(ans[1]) + '\n ' + str(ans[2]) + ']'
+        return '[' + str(ans[0]) + '\n ' + str(ans[1]) + '\n ' + str(
+            ans[2]) + ']'
 
     def new_drawing(self, coords):
-        self.blocks[coords[0]][coords[1]].drawing = True
+        if self.blocks[coords[0]][coords[1]].drawing:
+            return False
+        else:
+            self.blocks[coords[0]][coords[1]].drawing = True
+        return True
 
     def stop_drawing(self, coords):
         self.blocks[coords[0]][coords[1]].drawing = False

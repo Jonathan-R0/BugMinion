@@ -37,10 +37,9 @@ def detect_event(cursor, event, table):
     elif event.key == pygame.K_RIGHT or event.key == ord('d'):
         cursor.go_right()
     elif event.key == pygame.K_RETURN:
-        cursor.hit(table)
-        return True
-    elif event.key == pygame.K_BACKSPACE:
-        cursor.unhit(table)
+        return cursor.hit(table)
+    #elif event.key == pygame.K_BACKSPACE:
+    #    cursor.unhit(table)
     cursor.draw()
     return False
 
@@ -69,7 +68,8 @@ def run():
     running = True
     game_ended = False
     starting_screen(cursor.display, window)
-    timer = Timer(cursor.display, (700, 350))
+    timer = Timer(cursor.display, (700, 350),
+                  window.mixer.Sound("./../assets/pop.wav"))
 
     while running:
 

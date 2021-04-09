@@ -9,11 +9,12 @@ IMG_FORMAT = ".png"
 
 
 class Timer:
-    def __init__(self, display, coords):
+    def __init__(self, display, coords, pop_sound):
         self.now = 5
         self.starting_time = time.time()
         self.display = display
         self.drawing_coords = coords
+        self.pop_sound = pop_sound
 
     def draw(self):
         self.update()
@@ -30,4 +31,7 @@ class Timer:
         return TOTAL_SECONDS
 
     def update(self):
+        before = self.now
         self.now = self._get_time()
+        if before != self.now:
+            self.pop_sound.play()
